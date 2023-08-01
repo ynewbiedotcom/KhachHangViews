@@ -1,36 +1,17 @@
 import React, { useState } from "react";
-import { useCartContext } from "../../CartContext";
-import ProductData from "./ProductData";
+import axios from "axios";
+
 import Accordion from "react-bootstrap/Accordion";
 
-const InforProduct = () => {
+const InforProduct = (props) => {
+  const { product } = props;
   const [quantity, setQuantity] = useState(1);
-  const [selectedColor, setSelectedColor] = useState(ProductData.mauSac[0]);
+  const [selectedColor, setSelectedColor] = useState(product.mauSac[0]);
   const [selectedSize, setSelectedSize] = useState(
-    ProductData.mauSac[0].kichThuoc[0]
+    product.mauSac[0].kichThuoc[0]
   );
 
-  const { dispatch } = useCartContext();
 
-  const handleAddToCart = () => {
-    // Lấy thông tin sản phẩm từ ProductData
-    const product = ProductData;
-
-    // Tạo đối tượng sản phẩm mới để thêm vào giỏ hàng
-    const newCartItem = {
-      id: product.maSP, // Sử dụng mã sản phẩm làm id của sản phẩm trong giỏ hàng
-      ten: product.ten,
-      gia: product.gia,
-      color: selectedColor.value,
-      size: selectedSize.value,
-      quantity: quantity,
-    };
-    console.log("checkk", newCartItem);
-    // Gọi hàm dispatch từ Context API để thêm sản phẩm vào giỏ hàng
-    dispatch({ type: "ADD_TO_CART", payload: newCartItem });
-
-    // Hiển thị thông báo hoặc chuyển hướng đến trang giỏ hàng (tuỳ ý)
-  };
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
@@ -44,40 +25,54 @@ const InforProduct = () => {
   const handleQuantityChange = (quantity) => {
     setQuantity(quantity.target.value);
   };
+  const handleAddToCart = () => {
+    axios.post('http://localhost:3000/cart/', {
+      id: product.id,
+      soLuong: quantity
+
+    }).then((response) => {
+      if (response.status === 201) {
+        alert('Added to cart')
+      } else {
+        alert(' not Added to cart')
+      }
+    }).catch((error) => { console.log(error) });
+
+  };
 
   return (
     <>
       <div className="content-right mt-5">
         <h1>
-          <strong>{ProductData.ten}</strong>
+          <strong>{product.ten}</strong>
         </h1>
         <div className="row">
           <div className="col-6">
-            <span>Mã sản phẩm: {ProductData.maSP}</span>
+            <span>Mã sản phẩm: {product.maSP}</span>
           </div>
           <div className="col-6">
-            <span>Tình trạng: {ProductData.tinhTrang}</span>
+            <span>Tình trạng: {product.tinhTrang}</span>
           </div>
           <div className="col-6">
-            <span>Hãng: {ProductData.hang}</span>
+            <span>Hãng: {product.hang}</span>
           </div>
           <div className="col-6">
-            <span>Dòng: {ProductData.dong}</span>
+            <span>Dòng: {product.dong}</span>
           </div>
         </div>
         <div className="row">
           <div className="col-12">
             <br />
             <h3>
-              <strong style={{ color: "orange" }}>{ProductData.gia} VND</strong>
+              <strong style={{ color: "orange" }}>{product.giaBan} VND</strong>
             </h3>
           </div>
         </div>
         <hr className="dashed-hr" />
-        <span>{ProductData.moTa}</span>
+        <span>{product.moTa}</span>
         <hr className="dashed-hr" />
         <div className="row">
-          {ProductData.mauSac.map((item, index) => {
+          {product.mauSac.map((item, index) => {
             return (
               <div className="col-1 ms-1 mb-3" key={item.idMauSac}>
                 <a onClick={() => handleColorChange(item)}>
@@ -85,7 +80,7 @@ const InforProduct = () => {
                     style={{
                       width: "40px",
                       height: "40px",
-                      backgroundColor: item.value,
+                      backgroundColor: item.giaTri,
                     }}
                   ></div>
                 </a>
@@ -105,18 +100,17 @@ const InforProduct = () => {
                   {selectedColor.kichThuoc.map((item, index) => {
                     return (
                       <div
-                        className={`col-3 mb-3 ${
-                          item === selectedSize ? "selected-size" : ""
-                        }`}
+                        className={`col-3 mb-3 ${item === selectedSize ? "selected-size" : ""
+                          }`}
                         key={item.idKichThuoc}
                       >
-                        <a
-                          href="#"
-                          className="btn btn-sm btn-outline-dark"
+                        <button
+
+                          className={"btn btn-sm btn-outline-dark"}
                           onClick={() => handleSizeChange(item)}
                         >
-                          <div>{item.value}</div>
-                        </a>
+                          <div>{item.giaTri}</div>
+                        </button>
                       </div>
                     );
                   })}
@@ -129,7 +123,7 @@ const InforProduct = () => {
               <input
                 type="number"
                 min="0"
-                max={ProductData.conLai}
+                max={product.soLuong}
                 className="form-control"
                 name="formId1"
                 id="formId1"
@@ -158,7 +152,7 @@ const InforProduct = () => {
               title="Yêu  thích"
               data-product-id="1"
             >
-              <i className="fa-regular fa-heart fs-5"></i>
+              <i className="fa-regular fa-heart fs-2"></i>
             </a>
           </div>
           <div className="col-12 mt-2">

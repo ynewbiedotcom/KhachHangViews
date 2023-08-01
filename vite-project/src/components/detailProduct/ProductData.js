@@ -14,30 +14,30 @@ const ProductData = {
   conLai: 90,
   mauSac: [
     {
-      value: "red",
+      giaTri: "red",
       idMauSac: 1,
       kichThuoc: [
-        { value: "41", idKichThuoc: 1 },
-        { value: "43", idKichThuoc: 2 },
-        { value: "30", idKichThuoc: 3 },
+        { giaTri: "41", idKichThuoc: 1 },
+        { giaTri: "43", idKichThuoc: 2 },
+        { giaTri: "30", idKichThuoc: 3 },
       ],
     },
     {
-      value: "blue",
+      giaTri: "blue",
       idMauSac: 2,
       kichThuoc: [
-        { value: "31", idKichThuoc: 4 },
-        { value: "76", idKichThuoc: 5 },
-        { value: "23", idKichThuoc: 6 },
+        { giaTri: "31", idKichThuoc: 4 },
+        { giaTri: "76", idKichThuoc: 5 },
+        { giaTri: "23", idKichThuoc: 6 },
       ],
     },
     {
-      value: "pink",
+      giaTri: "pink",
       idMauSac: 3,
       kichThuoc: [
-        { value: "45", idKichThuoc: 7 },
-        { value: "65", idKichThuoc: 8 },
-        { value: "54", idKichThuoc: 9 },
+        { giaTri: "45", idKichThuoc: 7 },
+        { giaTri: "65", idKichThuoc: 8 },
+        { giaTri: "54", idKichThuoc: 9 },
       ],
     },
   ],

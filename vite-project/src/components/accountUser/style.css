@@ -11,20 +11,7 @@ p {
 .dashed-hr {
   border-top: 2px dashed black;
 }
-.nav-link {
-  color: rgb(0, 69, 52);
-  border-radius: 0;
-  white-space: nowrap;
-  transition: 1000ms;
-}
 
-.nav-link:hover {
-  background-color: rgb(243, 240, 240);
-
-  white-space: nowrap;
-  transition: 500ms;
-  animation: rainbow 5s linear infinite;
-}
 .fw-bolder {
   font-size: 3vm;
 }

@@ -2,11 +2,18 @@ import React from "react";
 import logo from "../../components/assets/images/logo.jpg";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../../CartContext";
 
 const Search = () => {
+  const { state } = useCartContext();
+
+  // Tính tổng số lượng sản phẩm trong giỏ hàng
+  const getTotalQuantity = () => {
+    return state.cartItems.reduce((total, item) => total + item.soLuong, 0);
+  };
   window.addEventListener("scroll", function () {
     const search = document.querySelector(".search");
-    search.classList.toggle("active", window.scrollY > 100);
+    search.classList.toggle("active", window.scrollY > 90);
   });
   return (
     <>
@@ -42,11 +49,13 @@ const Search = () => {
           </div>
 
           <div className="icon f_flex width">
-            <i className="fa fa-user icon-circle"></i>
+            <a href="/user/">
+              <i className="fa fa-user icon-circle"></i>
+            </a>
             <div className="cart">
               <Link to={"/cart"}>
                 <i className="fa fa-shopping-bag icon-circle"></i>
-                <span>5</span>
+                <span>{getTotalQuantity()}</span>
               </Link>
             </div>
           </div>

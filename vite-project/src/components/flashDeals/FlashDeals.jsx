@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FlashCard from "./FlashCard";
 import "./style.css";
+import axios from "axios";
 
-const FlashDeals = ({ productItems, addToCart }) => {
+const FlashDeals = () => {
+
+  const [products, setProduct] = useState([]);
+
+  useEffect(() => {
+
+    axios.get("http://localhost:3000/products/").then((response) => {
+      if (response.status === 200) {
+        setProduct(response.data)
+        console.log('>>> đã lấy dữ liệu cho flass deal', response.data)
+      }
+    });
+
+  }, [])
   return (
     <>
       <section className="flash">
         <div className="container">
-          <div className="heading f_flex">
-            <i className="fa fa-bolt"></i>
-            <h1>Flash Delas</h1>
-          </div>
-          <FlashCard productItems={productItems} addToCart={addToCart} />
+
+          <FlashCard products={products} />
         </div>
       </section>
     </>

@@ -15,6 +15,7 @@
 /*------search-----------*/
 .search {
   padding: 20px 0;
+  z-index: 999;
 }
 .search .logo img {
   width: 50px;
@@ -76,28 +77,10 @@
   justify-content: end;
 }
 /*------search-----------*/
-.catgrories {
-  background-color: #f6f9fc;
-  padding: 0px 30px;
-  border-radius: 5px;
-  height: 6vh;
-  margin-top: 5px;
-}
-.catgrories span {
-  margin-right: 20px;
-  font-size: 30px;
-  margin-top: 10px;
-}
-.catgrories h4 {
-  font-weight: 500;
-  margin-top: 12px;
-}
-.catgrories h4 i {
-  margin-left: 10px;
-}
+
 header {
   height: 8vh;
-  box-shadow: -1px 15px 17px -8px rgba(0, 0, 0, 0.1);
+  box-shadow: 15px 17px -8px rgba(0, 0, 0);
 }
 header ul {
   line-height: 8vh;
@@ -121,7 +104,7 @@ header ul li a:hover {
   height: 12vh;
   position: fixed;
   top: 0;
-  z-index: 1000;
+  z-index: 9999;
   width: 100%;
   background-color: #fff;
   box-shadow: -1px 11px 24px -11px rgba(0, 0, 0, 0.2);
@@ -132,20 +115,7 @@ header ul li a:hover {
   header ul {
     padding-top: 30px;
   }
-  .nav-links-mobile {
-    position: absolute;
-    display: block;
-    list-style: none;
-    box-shadow: rgba(50, 50, 93, 0.23) 0px 50px 100px -20px,
-      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-    left: 0;
-    top: 0;
-    transition: all 0.5s ease-in-out;
-    width: 60%;
-    height: 100vh;
-    background-color: white;
-    z-index: 888;
-  }
+
   header ul li {
     width: 100%;
     transition: all 0.5s ease-in-out;
@@ -163,7 +133,7 @@ header ul li a:hover {
     color: #ff014f;
     display: block;
     font-size: 25px;
-    z-index: 999;
+    z-index: 2;
   }
   .close {
     right: 45%;
@@ -180,4 +150,51 @@ header ul li a:hover {
   .header.active {
     height: 10vh;
   }
+}
+
+.nav-link {
+  color: rgb(0, 69, 52);
+  border-radius: 10px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.nav-link:hover {
+  background-color: rgb(243, 240, 240);
+  border-radius: 50px;
+  white-space: nowrap;
+  transition: 500ms;
+  animation: rainbow 5s linear infinite;
+}
+.fw-bolder {
+  font-size: 3vm;
+}
+@keyframes rainbow {
+  0% {
+    color: rgb(249, 188, 172);
+  }
+  14% {
+    color: orange;
+  }
+  28% {
+    color: rgb(255, 199, 59);
+  }
+  42% {
+    color: rgb(204, 233, 129);
+  }
+  57% {
+    color: rgb(64, 64, 143);
+  }
+  71% {
+    color: rgb(185, 237, 214);
+  }
+  85% {
+    color: violet;
+  }
+  100% {
+    color: rgb(249, 188, 172);
+  }
+}
+#headerShaDown {
+  box-shadow: -1px 11px 24px -11px rgba(0, 0, 0, 0.2);
 }

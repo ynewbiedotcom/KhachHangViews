@@ -10,6 +10,9 @@ import Cart from "./common/Cart/Cart.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import DetailProduct from "./components/detailProduct/DetailProduct.jsx";
 import { CartProvider } from "./CartContext";
+import ShopFull from "./components/shops/ShopFull.jsx";
+import OderList from "./components/OderList/ListOder.jsx";
+import Story from "./components/Story.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +36,18 @@ const router = createBrowserRouter([
       {
         path: "product/:id",
         element: <DetailProduct />,
+      },
+      {
+        path: "products",
+        element: <ShopFull />,
+      },
+      {
+        path: "track",
+        element: <OderList />,
+      },
+      {
+        path: "story",
+        element: <Story />,
       },
     ],
   },

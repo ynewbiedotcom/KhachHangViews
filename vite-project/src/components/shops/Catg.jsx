@@ -1,6 +1,5 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
-import ListGroup from "react-bootstrap/ListGroup";
 const Catg = () => {
   const data = [
     {
@@ -26,8 +25,8 @@ const Catg = () => {
     <>
       <div className="category">
         <div className="chead d_flex">
-          <h1>Bộ lọc </h1>
-          <h1>100k - 500k </h1>
+          <h1> Bộ lọc </h1>
+          <h1> 100k - 500k </h1>
         </div>
         <Accordion className="">
           {data.map((value, index) => {
